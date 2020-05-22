@@ -1,7 +1,7 @@
 <?php 
     if(isset($_POST['submit'])){
       setcookie("user", "", time() - 36000000,'/');
-      header("Location:../index.php");
+      header("Location:./admin.php");
     }
     if($_COOKIE['user']){
       $results=[];
@@ -18,7 +18,7 @@
           mysqli_close($conn);
       }
     } else {
-      header("Location:../index.php");
+      header("Location:./admin.php");
     }
 ?>
 <!doctype html>
@@ -27,7 +27,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link href="https://fonts.googleapis.com/css2?family=Girassol&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mali&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aladin&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
@@ -41,6 +43,7 @@
         padding:15px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         width:100%;
+        font-family: 'Mali', cursive;
       }
       .intern ul{
         margin:20px;
@@ -66,13 +69,16 @@
         form{
             margin:0!important;
         }
+        h1{
+          font-family: 'Girassol', cursive;
+        }
     </style>
   </head>
   <body>
     <div class="resume-form">
       <h1>Resumes</h1>
       <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
-        <input type="submit" value="LogOut" name="submit" class="btn btn-primary">
+        <input type="submit" value="LogOut" name="submit" class="btn btn-primary" style="font-family: 'Aladin', cursive;font-size:20px">
       </form>
       <?php foreach($results as $intern){ ?>
           <div class="intern">

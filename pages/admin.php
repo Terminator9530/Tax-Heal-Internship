@@ -1,9 +1,12 @@
 <?php 
-      if(isset($_POST['admin'])){
-        header("Location:./pages/admin.php");
-      }
-      if(isset($_POST['user'])){
-        header("Location:./pages/form.php");
+      $err='';
+      if(isset($_POST['submit'])){
+        if($_POST['username']=="admin" && $_POST['password']=="test"){
+          setcookie('user','admin',time()+1800,'/');
+          header('Location:./pages/hrpage.php');
+        }
+        else
+        $err="Wrong Credentials";
       }
 ?>
 <!doctype html>
@@ -42,16 +45,25 @@
             margin:0!important;
         }
         h1{
-            font-family: 'Girassol', cursive;
+          font-family: 'Girassol', cursive;
         }
     </style>
   </head>
   <body>
+    <?php if($err!=''){ ?>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <?php echo $err; ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <?php } ?>
   <div class="resume-form">
-    <h1>Landing Page</h1>
-    <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
-        <input type="submit" name="admin" value="Admin Login" class="btn btn-primary" style="font-family: 'Mali', cursive;">
-        <input type="submit" name="user" value="Application Form" class="btn btn-primary style="font-family: 'Mali', cursive;"">
+    <h1>Admin Panel</h1>
+    <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>" style="font-family: 'Mali', cursive;">
+        <input type="text" name="username" placeholder="Enter The Username" class="form-control my-3" required autocomplete="off">
+        <input type="text" name="password" placeholder="Enter The Password" class="form-control" required autocomplete="off">
+        <input type="submit" name="submit" value="Login" class="btn btn-primary" style="font-family: 'Aladin', cursive;font-size:20px">
     </form>
   </div>
 
