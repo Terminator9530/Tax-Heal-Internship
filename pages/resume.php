@@ -32,7 +32,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Aladin&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Resume</title>
     <style>
         .resume-form{
@@ -47,7 +47,9 @@
     </style>
   </head>
   <body>
-        <?php include "./navbar.php"; ?>
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="./hrpage.php"><i class="fa fa-arrow-left"></i></a>
+        </nav>
       <div class="resume-form">
       <h1>Resume</h1>
         <?php for($i=0;$i<6;$i++){ ?>
