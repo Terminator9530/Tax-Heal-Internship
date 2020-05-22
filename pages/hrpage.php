@@ -9,7 +9,7 @@
       if(!$conn){
           echo 'Connection Error : '. mysqli_connect_error();
       } else {
-          $sql="SELECT info1,info2,info3,info4,info5,info6 FROM resume";
+          $sql="SELECT info1,info2,info3,info4,info5,info6,id FROM resume";
           if(mysqli_query($conn,$sql)){
               $results = $conn->query($sql)->fetch_all();
           } else {
@@ -72,6 +72,28 @@
         h1{
           font-family: 'Girassol', cursive;
         }
+        .card{
+          color:black!important;
+        }
+        .col-4{
+          padding:0!important;
+        }
+        .card:hover{
+          cursor:pointer;
+          animation: animate 0.1s forwards linear;
+        }
+
+        @keyframes animate{
+          0%{
+            opacity: 1;
+          }
+          100%{
+            opacity: 0.8;
+          }
+        }
+        a:hover{
+          text-decoration: none;
+        }
     </style>
   </head>
   <body>
@@ -81,15 +103,19 @@
       <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
         <input type="submit" value="LogOut" name="submit" class="btn btn-primary" style="font-family: 'Aladin', cursive;font-size:20px">
       </form>
-      <?php foreach($results as $intern){ ?>
-          <div class="intern">
-              <ul>
-              <?php for($i=0;$i<6;$i++){ ?>
-                  <li><?php echo $intern[$i]; ?></li>
-              <?php } ?>
-              </ul>
-          </div>
-      <?php } ?>
+      <div class="row">
+        <?php foreach($results as $intern){ ?>
+          <a href="./resume.php?id=<?php echo $intern[6]; ?>" class="col-4">
+            <div class="card text-black bg-light mb-3 mr-5" style="max-width: 18rem;">
+              <div class="card-header"><?php echo $intern[0]; ?></div>
+              <div class="card-body">
+                <h5 class="card-title">Skills</h5>
+                <p class="card-text"><?php echo $intern[1]; ?></p>
+              </div>
+            </div>
+          </a>
+        <?php } ?>
+      </div>
     </div>
 
     <!-- Optional JavaScript -->

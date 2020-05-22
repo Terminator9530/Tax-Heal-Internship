@@ -28,7 +28,7 @@
             position: relative;
             height: 500px;
             border-radius:10px;
-            margin: 50px auto;
+            margin: 40px auto;
             width: 100%;
         }
 
@@ -129,11 +129,11 @@
         <center><h1>Contact</h1></center>
         <div class="container">
             <img src="../map.png" style="border-radius:10px;box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);">
-            <p class="title">Open in Map</p>
+            <p class="title">Open in Google Map</p>
             <div class="overlay"></div>
             <div class="button"><a href="https://www.google.com/maps/place/Z+Square+Mall/@26.4733213,80.350577,17z/data=!3m1!4b1!4m5!3m4!1s0x399c38a645603a8b:0x6f19ae5f63ac4fd5!8m2!3d26.4733213!4d80.3527657"> Click Here </a></div>
         </div>
-        <center><p style="margin-top:10px;padding:20px;">16, 113, Mall Rd, Bada Chauraha, Downtown, Kanpur, Uttar Pradesh 208001</p></center>
+        <center><p style="margin-top:5px;padding:10px;padding-bottom:0;margin-bottom:0 !important;">16, 113, Mall Rd, Bada Chauraha, Downtown, Kanpur, Uttar Pradesh 208001</p></center>
       </div>
      <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
