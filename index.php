@@ -1,11 +1,13 @@
 <?php 
-    $err='';
-    if(isset($_POST['submit'])){
-      if($_POST['username']=="admin" && $_POST['password']=="test")
-      header('Location:./pages/hrpage.php');
-      else
-      $err="Wrong Credentials";
-    }
+      $err='';
+      if(isset($_POST['submit'])){
+        if($_POST['username']=="admin" && $_POST['password']=="test"){
+          setcookie('user','admin',time()+1800,'/');
+          header('Location:./pages/hrpage.php');
+        }
+        else
+        $err="Wrong Credentials";
+      }
 ?>
 <!doctype html>
 <html lang="en">

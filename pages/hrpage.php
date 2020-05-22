@@ -1,16 +1,24 @@
 <?php 
-    $results=[];
-    $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
-    if(!$conn){
-        echo 'Connection Error : '. mysqli_connect_error();
+    if(isset($_POST['submit'])){
+      setcookie("user", "", time() - 36000000,'/');
+      header("Location:../index.php");
+    }
+    if($_COOKIE['user']){
+      $results=[];
+      $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
+      if(!$conn){
+          echo 'Connection Error : '. mysqli_connect_error();
+      } else {
+          $sql="SELECT info1,info2,info3,info4,info5,info6 FROM resume";
+          if(mysqli_query($conn,$sql)){
+              $results = $conn->query($sql)->fetch_all();
+          } else {
+              echo "Query Error ".mysqli_error($conn);
+          }
+          mysqli_close($conn);
+      }
     } else {
-        $sql="SELECT info1,info2,info3,info4,info5,info6 FROM resume";
-        if(mysqli_query($conn,$sql)){
-            $results = $conn->query($sql)->fetch_all();
-        } else {
-            echo "Query Error ".mysqli_error($conn);
-        }
-        mysqli_close($conn);
+      header("Location:../index.php");
     }
 ?>
 <!doctype html>
@@ -63,6 +71,9 @@
   <body>
     <div class="resume-form">
       <h1>Resumes</h1>
+      <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
+        <input type="submit" value="LogOut" name="submit" class="btn btn-primary">
+      </form>
       <?php foreach($results as $intern){ ?>
           <div class="intern">
               <ul>
