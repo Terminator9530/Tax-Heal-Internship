@@ -27,37 +27,7 @@
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
   <title>Admin Panel</title>
-  <style>
-    body {
-      background-color: rgb(68, 66, 66);
-      color: white;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    .resume-form {
-      padding: 10px;
-      width: 50%;
-      margin: auto;
-    }
-
-    .resume-form input[type='submit'] {
-      margin: 15px;
-      margin-left: 0;
-    }
-
-    form {
-      margin: 0 !important;
-    }
-
-    h1 {
-      font-family: 'Girassol', cursive;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="../styles/admin.css">
 </head>
 
 <body>

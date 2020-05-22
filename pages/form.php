@@ -40,37 +40,7 @@
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <title>Resume Form</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        .resume-form {
-            padding: 10px;
-            width: 80%;
-            margin: auto;
-        }
-
-        .resume-form input[type='submit'] {
-            margin: 15px;
-        }
-
-        form {
-            margin: 0 !important;
-        }
-
-        h3 {
-            margin-bottom: 20px;
-            font-family: 'Girassol', cursive;
-        }
-
-        body {
-            background-color: rgb(68, 66, 66);
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../styles/form.css">
 </head>
 
 <body>
