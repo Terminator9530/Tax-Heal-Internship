@@ -4,6 +4,25 @@
         for($i=0;$i<6;$i++){
             echo $_POST['info'.($i+1)];
         }
+
+        $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
+        if(!$conn){
+            echo 'Connection Error : '. mysqli_connect_error();
+        } else {
+            $info1=mysqli_real_escape_string($conn,$_POST['info1']);
+            $info2=mysqli_real_escape_string($conn,$_POST['info2']);
+            $info3=mysqli_real_escape_string($conn,$_POST['info3']);
+            $info4=mysqli_real_escape_string($conn,$_POST['info4']);
+            $info5=mysqli_real_escape_string($conn,$_POST['info5']);
+            $info6=mysqli_real_escape_string($conn,$_POST['info6']);
+            $sql="INSERT INTO resume(info1,info2,info3,info4,info5,info6) VALUES('$info1','$info2','$info3','$info4','$info5','$info6')";
+            if(mysqli_query($conn,$sql)){
+                 header('Location:../index.php');
+            } else {
+                echo "Query Error ".mysqli_error($conn);
+            }
+            mysqli_close($conn);
+        }
     }
 ?>
 <!doctype html>

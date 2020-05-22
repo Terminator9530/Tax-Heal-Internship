@@ -1,3 +1,8 @@
+<?php 
+    if(isset($_POST['submit'])){
+      header('Location:./pages/hrpage.php');
+    }
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -9,9 +14,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <title>Admin Panel</title>
+    <style>
+      input[type='submit']{
+        margin:20px;
+      }
+    </style>
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <h1>Admin Panel</h1>
+    <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
+        <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+    </form>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
