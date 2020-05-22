@@ -26,10 +26,10 @@
         }
         .container {
             position: relative;
-            margin-top: 50px;
-            width: 500px;
-            height: 300px;
+            height: 500px;
             border-radius:10px;
+            margin: 50px auto;
+            width: 100%;
         }
 
         .overlay {
@@ -50,16 +50,16 @@
 
         img {
             position: absolute;
-            width: 500px;
-            height: 300px;
+            width: 100%;
+            height: 500px;
             left: 0;
         }
 
         .title {
             position: absolute;
-            width: 500px;
+            width: 100%;
             left: 0;
-            top: 120px;
+            top: 250px;
             font-weight: 700;
             font-size: 30px;
             text-align: center;
@@ -77,9 +77,9 @@
 
         .button {
             position: absolute;
-            width: 500px;
+            width: 100%;
             left:0;
-            top: 180px;
+            top: 250px;
             text-align: center;
             opacity: 0;
             transition: opacity .35s ease;
@@ -132,7 +132,7 @@
             <div class="overlay"></div>
             <div class="button"><a href="https://www.google.com/maps/place/Z+Square+Mall/@26.4733213,80.350577,17z/data=!3m1!4b1!4m5!3m4!1s0x399c38a645603a8b:0x6f19ae5f63ac4fd5!8m2!3d26.4733213!4d80.3527657"> Click Here </a></div>
         </div>
-        <center><p style="margin-top:10px;padding:20px;font-family: 'Mali', cursive;">16, 113, Mall Rd, Bada Chauraha, Downtown, Kanpur, Uttar Pradesh 208001</p></center>
+        <center><p style="margin-top:10px;padding:20px;">16, 113, Mall Rd, Bada Chauraha, Downtown, Kanpur, Uttar Pradesh 208001</p></center>
       </div>
      <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

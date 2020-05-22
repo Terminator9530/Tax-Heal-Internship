@@ -46,6 +46,8 @@
         }
         .resume-form{
             padding:10px;
+            width:80%;
+            margin:auto;
         }
         .resume-form input[type='submit']{
             margin:15px;
@@ -69,7 +71,7 @@
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="row" style="font-family: 'Mali', cursive;">
             <?php for($i=0;$i<6;$i++){ ?>
                 <div class="col-6">
-                    <label><?php echo "info".($i+1) ?></label><input type="text" class="form-control" name="<?php echo "info".($i+1) ?>" required>
+                    <label><?php echo "info".($i+1) ?></label><input type="text" class="form-control" name="<?php echo "info".($i+1) ?>" required autocomplete="off">
                 </div>
             <?php } ?>
             <input type="submit" class="btn btn-primary" name="submit" value="Submit" style="font-family: 'Aladin', cursive;font-size:20px">
