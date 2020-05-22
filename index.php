@@ -5,6 +5,9 @@
       if(isset($_POST['user'])){
         header("Location:./pages/form.php");
       }
+      if(isset($_POST['contact'])){
+        header("Location:./pages/contact.php");
+      }
 ?>
 <!doctype html>
 <html lang="en">
@@ -51,7 +54,8 @@
     <h1>Landing Page</h1>
     <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
         <input type="submit" name="admin" value="Admin Login" class="btn btn-primary" style="font-family: 'Mali', cursive;">
-        <input type="submit" name="user" value="Application Form" class="btn btn-primary style="font-family: 'Mali', cursive;"">
+        <input type="submit" name="user" value="Application Form" class="btn btn-primary" style="font-family: 'Mali', cursive;">
+        <input type="submit" name="contact" value="Contact" class="btn btn-primary" style="font-family: 'Mali', cursive;"">
     </form>
   </div>
 
