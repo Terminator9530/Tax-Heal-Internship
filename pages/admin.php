@@ -3,7 +3,7 @@
       if(isset($_POST['submit'])){
         if($_POST['username']=="admin" && $_POST['password']=="test"){
           setcookie('user','admin',time()+1800,'/');
-          header('Location:./pages/hrpage.php');
+          header('Location:./hrpage.php');
         }
         else
         $err="Wrong Credentials";
