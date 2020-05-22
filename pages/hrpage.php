@@ -28,19 +28,51 @@
       input[type='submit']{
         margin:20px;
       }
+      .intern{
+        height:auto;
+        padding:15px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        width:100%;
+      }
+      .intern ul{
+        margin:20px;
+      }
+      body{
+            background-color: rgb(68, 66, 66);
+            color:white;
+        }
+        *{
+            box-sizing: border-box;
+            margin:0;
+            padding:0;
+        }
+        .resume-form{
+            padding:10px;
+            width:90%;
+            margin:auto;
+        }
+        .resume-form input[type='submit']{
+            margin:15px;
+            margin-left: 0;
+        }
+        form{
+            margin:0!important;
+        }
     </style>
   </head>
   <body>
-    <h1>Resumes</h1>
-    <?php foreach($results as $intern){ ?>
-        <div>
-            <ul>
-            <?php for($i=0;$i<6;$i++){ ?>
-                <li><?php echo $intern[$i]; ?></li>
-            <?php } ?>
-            </ul>
-        </div>
-    <?php } ?>
+    <div class="resume-form">
+      <h1>Resumes</h1>
+      <?php foreach($results as $intern){ ?>
+          <div class="intern">
+              <ul>
+              <?php for($i=0;$i<6;$i++){ ?>
+                  <li><?php echo $intern[$i]; ?></li>
+              <?php } ?>
+              </ul>
+          </div>
+      <?php } ?>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

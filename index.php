@@ -1,6 +1,10 @@
 <?php 
+    $err='';
     if(isset($_POST['submit'])){
+      if($_POST['username']=="admin" && $_POST['password']=="test")
       header('Location:./pages/hrpage.php');
+      else
+      $err="Wrong Credentials";
     }
 ?>
 <!doctype html>
@@ -15,16 +19,46 @@
 
     <title>Admin Panel</title>
     <style>
-      input[type='submit']{
-        margin:20px;
-      }
+      body{
+            background-color: rgb(68, 66, 66);
+            color:white;
+        }
+        *{
+            box-sizing: border-box;
+            margin:0;
+            padding:0;
+        }
+        .resume-form{
+            padding:10px;
+            width:50%;
+            margin:auto;
+        }
+        .resume-form input[type='submit']{
+            margin:15px;
+            margin-left: 0;
+        }
+        form{
+            margin:0!important;
+        }
     </style>
   </head>
   <body>
+    <?php if($err!=''){ ?>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <?php echo $err; ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <?php } ?>
+  <div class="resume-form">
     <h1>Admin Panel</h1>
     <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
-        <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+        <input type="text" name="username" placeholder="Enter The Username" class="form-control my-3" required autocomplete="off">
+        <input type="text" name="password" placeholder="Enter The Password" class="form-control" required autocomplete="off">
+        <input type="submit" name="submit" value="Login" class="btn btn-primary">
     </form>
+  </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
