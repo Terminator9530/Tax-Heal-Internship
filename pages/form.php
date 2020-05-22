@@ -17,7 +17,7 @@
             $info6=mysqli_real_escape_string($conn,$_POST['info6']);
             $sql="INSERT INTO resume(info1,info2,info3,info4,info5,info6) VALUES('$info1','$info2','$info3','$info4','$info5','$info6')";
             if(mysqli_query($conn,$sql)){
-                 header('Location:../index.php');
+                 header('Location:./index.php');
             } else {
                 echo "Query Error ".mysqli_error($conn);
             }
@@ -66,6 +66,7 @@
     </style>
   </head>
   <body>
+    <?php include "./navbar.php"; ?>
     <div class="resume-form">
         <h3>Enter The Resume Details : </h3>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="row" style="font-family: 'Mali', cursive;">

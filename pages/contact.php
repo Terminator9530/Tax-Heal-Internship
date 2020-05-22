@@ -124,6 +124,7 @@
     </style>
   </head>
   <body>
+      <?php include "./navbar.php"; ?>
       <div class="address">
         <center><h1>Contact</h1></center>
         <div class="container">

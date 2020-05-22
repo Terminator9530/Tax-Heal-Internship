@@ -1,12 +1,12 @@
 <?php 
       if(isset($_POST['admin'])){
-        header("Location:./pages/admin.php");
+        header("Location:./admin.php");
       }
       if(isset($_POST['user'])){
-        header("Location:./pages/form.php");
+        header("Location:./form.php");
       }
       if(isset($_POST['contact'])){
-        header("Location:./pages/contact.php");
+        header("Location:./contact.php");
       }
 ?>
 <!doctype html>
@@ -50,6 +50,7 @@
     </style>
   </head>
   <body>
+    <?php include "./navbar.php"; ?>
   <div class="resume-form">
     <h1>Landing Page</h1>
     <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">

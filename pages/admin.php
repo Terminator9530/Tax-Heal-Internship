@@ -50,6 +50,7 @@
     </style>
   </head>
   <body>
+  <?php include "./navbar.php"; ?>
     <?php if($err!=''){ ?>
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <?php echo $err; ?>
@@ -62,7 +63,7 @@
     <h1>Admin Panel</h1>
     <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>" style="font-family: 'Mali', cursive;">
         <input type="text" name="username" placeholder="Enter The Username" class="form-control my-3" required autocomplete="off">
-        <input type="text" name="password" placeholder="Enter The Password" class="form-control" required autocomplete="off">
+        <input type="password" name="password" placeholder="Enter The Password" class="form-control" required>
         <input type="submit" name="submit" value="Login" class="btn btn-primary" style="font-family: 'Aladin', cursive;font-size:20px">
     </form>
   </div>

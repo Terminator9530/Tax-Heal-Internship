@@ -75,6 +75,7 @@
     </style>
   </head>
   <body>
+    <?php include "./navbar.php"; ?>
     <div class="resume-form">
       <h1>Resumes</h1>
       <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
