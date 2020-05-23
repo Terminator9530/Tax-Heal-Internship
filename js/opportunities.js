@@ -1,0 +1,1 @@
+document.querySelectorAll("nav ul li a")[2].style.color="#c7c4c3";
