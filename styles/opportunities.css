@@ -1,0 +1,16 @@
+.depicting{
+    padding:10px;
+    width:90%;
+    margin:auto;
+}
+body{
+    background-color: rgb(68, 66, 66);
+    color:white;
+}
+h1 {
+    margin-bottom: 20px;
+    font-family: 'Girassol', cursive;
+}
+p{
+    font-family: 'Mali', cursive;
+}
