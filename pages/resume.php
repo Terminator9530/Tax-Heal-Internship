@@ -1,7 +1,6 @@
 <?php 
     if($_COOKIE['user']){
         if(isset($_GET['id'])){
-            $results=[];
             $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
             $id=mysqli_real_escape_string($conn,$_GET['id']);
             if(!$conn){
