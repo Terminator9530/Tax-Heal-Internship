@@ -28,10 +28,11 @@
             $err="Credentials Updated";
 
             // --------------------------------Changing value of Cookie ------------------------- //
-            setcookie("user", "", time() - 36000000,'/');
-            setcookie("pass", "", time() - 36000000,'/');
+
             setcookie("user", htmlspecialchars($_POST['newUsername']), time() + 1800,'/');
             setcookie("pass", hash("sha256",htmlspecialchars($_POST['newPassword'])), time() + 1800,'/');
+            $_COOKIE['user']=htmlspecialchars($_POST['newUsername']);
+            $_COOKIE['pass']=hash("sha256",htmlspecialchars($_POST['newPassword']));
         } else {
             $err="Query Error ".mysqli_error($conn);
         }
@@ -54,7 +55,7 @@
               }
             } 
             else {
-                header("Location:./admin.php");
+                // header("Location:./admin.php");
               }
         }
         else {
