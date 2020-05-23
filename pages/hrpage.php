@@ -176,11 +176,7 @@
       <?php } ?>
     </div>
   </div>
-  <script>
-    document.getElementById("changePassword").onclick = function () {
-      $('#staticBackdrop').modal(true);
-    }
-  </script>
+  <script src="../js/hrpage.js"></script>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
