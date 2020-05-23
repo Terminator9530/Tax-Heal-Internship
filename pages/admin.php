@@ -4,8 +4,20 @@
         header("Location:./hrpage.php");
       }
       if(isset($_POST['submit'])){
-        if($_POST['username']=="admin" && hash("sha256",$_POST['password'])=="9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"){
-          setcookie('user','admin',time()+1800,'/');
+        $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
+        if(!$conn){
+            echo 'Connection Error : '. mysqli_connect_error();
+        } else {
+            $sql="SELECT user,pass FROM adminrecords";
+            if(mysqli_query($conn,$sql)){
+                $results = $conn->query($sql)->fetch_assoc();
+            } else {
+                echo "Query Error ".mysqli_error($conn);
+            }
+            mysqli_close($conn);
+        }
+        if($_POST['username']==$results['user'] && hash("sha256",$_POST['password'])==$results['pass']){
+          setcookie('user',$results['user'],time()+1800,'/');
           header('Location:./hrpage.php');
         }
         else

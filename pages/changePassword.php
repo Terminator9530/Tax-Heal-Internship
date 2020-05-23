@@ -1,27 +1,11 @@
 <?php 
-    $err='';
     if(isset($_POST['submit'])){
       setcookie("user", "", time() - 36000000,'/');
       header("Location:./admin.php");
     }
-    if(isset($_POST['save'])){
-        $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
-        if(!$conn){
-            echo 'Connection Error : '. mysqli_connect_error();
-        } else {
-            $username=mysqli_real_escape_string($conn,$_POST['newUsername']);
-            $password=hash("sha256",mysqli_real_escape_string($conn,$_POST['newPassword']));
-            $olduser=mysqli_real_escape_string($conn,$_COOKIE['user']);
-            $sql="UPDATE adminrecords SET user='$username',pass='$password' WHERE user='$olduser'";
-            if(mysqli_query($conn,$sql)){
-                $err="Credentials Updated";
-                echo $err;
-            } else {
-                echo "Query Error ".mysqli_error($conn);
-            }
-            mysqli_close($conn);
-        }
-      }
+    if(isset($_POST['changepassword'])){
+      header("Location:./changePassword.php");
+    }
     if($_COOKIE['user']){
       $results=[];
       $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
@@ -79,36 +63,14 @@
       </ul>
     </div>
   </nav>
-  <!-- -----------------Modal-------------------------- -->
-    <div style="color:black;" class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Change Credentials</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
-                <input type="text" class="form-control mb-3" name="newUsername" placeholder="New Username" required autocomplete="off">
-                <input type="password" class="form-control mb-3" name="newPassword" placeholder="New Password" required autocomplete="off">
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" name="save">Save</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
   <div class="resume-form">
     <h1>Resumes</h1>
     <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
       <input type="submit" value="LogOut" name="submit" class="btn btn-primary"
         style="font-family: 'Aladin', cursive;font-size:20px">
+      <input type="submit" value="Change Password" name="changepassword" class="btn btn-primary"
+      style="font-family: 'Aladin', cursive;font-size:20px">
     </form>
-    <button style="font-family: 'Aladin', cursive;font-size:20px" class="btn btn-primary" id="changePassword">Change Password</button>
     <div class="row">
       <?php foreach($results as $intern){ ?>
       <div class="col-4">
@@ -124,11 +86,6 @@
       <?php } ?>
     </div>
   </div>
-  <script>
-    document.getElementById("changePassword").onclick=function(){
-      $('#staticBackdrop').modal(true);
-    }
-  </script>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
