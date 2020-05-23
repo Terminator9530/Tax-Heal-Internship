@@ -160,7 +160,7 @@
         style="font-family: 'Aladin', cursive;font-size:20px">
     </form>
     <button style="font-family: 'Aladin', cursive;font-size:20px" class="btn btn-primary" id="changePassword">Change
-      Password</button>
+      Credentials</button>
     <div class="row">
       <?php foreach($results as $intern){ ?>
       <div class="col-4">
