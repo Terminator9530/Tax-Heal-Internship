@@ -1,43 +1,52 @@
 <?php 
     $err='';
-    if(isset($_POST['submit'])){
-      setcookie("user", "", time() - 36000000,'/');
-      header("Location:./admin.php");
+    $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
+    if(!$conn){
+        $err='Connection Error : '. mysqli_connect_error();
     }
-    if(isset($_POST['save'])){
-        $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
-        if(!$conn){
-            $err='Connection Error : '. mysqli_connect_error();
+    else{
+      if(isset($_POST['submit'])){
+        setcookie("user", "", time() - 36000000,'/');
+        setcookie("pass", "", time() - 36000000,'/');
+        header("Location:./admin.php");
+      }
+      if(isset($_POST['save'])){
+        $username=mysqli_real_escape_string($conn,$_POST['newUsername']);
+        $password=hash("sha256",mysqli_real_escape_string($conn,$_POST['newPassword']));
+        $olduser=mysqli_real_escape_string($conn,$_COOKIE['user']);
+        $sql="UPDATE adminrecords SET user='$username',pass='$password' WHERE user='$olduser'";
+        if(mysqli_query($conn,$sql)){
+            $err="Credentials Updated";
         } else {
-            $username=mysqli_real_escape_string($conn,$_POST['newUsername']);
-            $password=hash("sha256",mysqli_real_escape_string($conn,$_POST['newPassword']));
-            $olduser=mysqli_real_escape_string($conn,$_COOKIE['user']);
-            $sql="UPDATE adminrecords SET user='$username',pass='$password' WHERE user='$olduser'";
-            if(mysqli_query($conn,$sql)){
-                $err="Credentials Updated";
-            } else {
-                $err="Query Error ".mysqli_error($conn);
-            }
-            mysqli_close($conn);
+            $err="Query Error ".mysqli_error($conn);
         }
       }
-    if($_COOKIE['user']){
-      $results=[];
-      $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
-      if(!$conn){
-          echo 'Connection Error : '. mysqli_connect_error();
-      } else {
-          $sql="SELECT info1,info2,info3,info4,info5,info6,id FROM resume";
-          if(mysqli_query($conn,$sql)){
-              $results = $conn->query($sql)->fetch_all();
-          } else {
-              echo "Query Error ".mysqli_error($conn);
-          }
-          mysqli_close($conn);
+      if(isset($_COOKIE['user']) && isset($_COOKIE['pass'])){
+        $user=$_COOKIE['user'];
+        $pass=$_COOKIE['pass'];
+        $sql="SELECT user,pass FROM adminrecords WHERE user='$user' AND pass='$pass'";
+        if(mysqli_query($conn,$sql)){
+            $results = $conn->query($sql)->fetch_assoc();
+            if($user==$results['user'] && $pass==$results['pass']){
+              $sql="SELECT info1,info2,info3,info4,info5,info6,id FROM resume";
+              if(mysqli_query($conn,$sql)){
+                  $results = $conn->query($sql)->fetch_all();
+              } else {
+                  echo "Query Error ".mysqli_error($conn);
+              }
+            } 
+            else {
+                header("Location:./admin.php");
+              }
+        }
+        else {
+          echo "Query Error ".mysqli_error($conn);
+        }
+        }else{
+          header("Location:./admin.php");
       }
-    } else {
-      header("Location:./admin.php");
     }
+    mysqli_close($conn);
 ?>
 <!doctype html>
 <html lang="en">

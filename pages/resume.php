@@ -1,24 +1,39 @@
 <?php 
-    if($_COOKIE['user']){
-        if(isset($_GET['id'])){
-            $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
-            $id=mysqli_real_escape_string($conn,$_GET['id']);
-            if(!$conn){
-                echo 'Connection Error : '. mysqli_connect_error();
-            } else {
-                $sql="SELECT info1,info2,info3,info4,info5,info6,id FROM resume WHERE id=$id";
-                if(mysqli_query($conn,$sql)){
-                    $results = $conn->query($sql)->fetch_assoc();
-                } else {
-                    echo "Query Error ".mysqli_error($conn);
+    $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
+    if(!$conn){
+        echo 'Connection Error : '. mysqli_connect_error();
+    } 
+    else{
+        if(isset($_COOKIE['user']) && isset($_COOKIE['pass'])){
+            $user=$_COOKIE['user'];
+            $pass=$_COOKIE['pass'];
+            $sql="SELECT user,pass FROM adminrecords WHERE user='$user' AND pass='$pass'";
+            if(mysqli_query($conn,$sql)){
+                $results = $conn->query($sql)->fetch_assoc();
+                print_r($results);
+                if($user==$results['user'] && $pass==$results['pass']){
+                    if(isset($_GET['id'])){
+                        $id=mysqli_real_escape_string($conn,$_GET['id']);
+                        $sql="SELECT info1,info2,info3,info4,info5,info6,id FROM resume WHERE id=$id";
+                        if(mysqli_query($conn,$sql)){
+                            $results = $conn->query($sql)->fetch_assoc();
+                        } else {
+                            echo "Query Error ".mysqli_error($conn);
+                        }
+                    }
                 }
-                mysqli_close($conn);
+                else{
+                    header("Location:./admin.php");
+                }
+            } else {
+                echo "Query Error ".mysqli_error($conn);
+            }
+        } 
+        else{
+            header("Location:./admin.php");
         }
     }
-}
-    else{
-        header("Location:./admin.php");
-    }
+    mysqli_close($conn);
 ?>
 <!doctype html>
 <html lang="en">

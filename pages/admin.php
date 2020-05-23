@@ -18,6 +18,7 @@
         }
         if($_POST['username']==$results['user'] && hash("sha256",$_POST['password'])==$results['pass']){
           setcookie('user',$results['user'],time()+1800,'/');
+          setcookie('pass',$results['pass'],time()+1800,'/');
           header('Location:./hrpage.php');
         }
         else
