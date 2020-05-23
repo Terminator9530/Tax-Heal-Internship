@@ -17,7 +17,13 @@
 </head>
 
 <body>
+
+    <!-------------------------------Navbar------------------------------------>
+
     <?php include "./navbar.php"; ?>
+
+    <!-------------------------------Depicting Opportunities------------------------------------>
+
     <div class="depicting">
         <h1>Depiction Opportunities</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consectetur lobortis nulla eget

@@ -1,26 +1,44 @@
 <?php 
     $err='';
+
+    // --------------------------------Connecting to MySQL database---------------------------- //
+
     $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
     if(!$conn){
         $err='Connection Error : '. mysqli_connect_error();
     }
     else{
+
+      // --------------------------------Logout & removing cookie---------------------------- //
+
       if(isset($_POST['submit'])){
         setcookie("user", "", time() - 36000000,'/');
         setcookie("pass", "", time() - 36000000,'/');
         header("Location:./admin.php");
       }
+
+      // --------------------------------Updating Login Credentials---------------------------- //
+
       if(isset($_POST['save'])){
-        $username=mysqli_real_escape_string($conn,$_POST['newUsername']);
-        $password=hash("sha256",mysqli_real_escape_string($conn,$_POST['newPassword']));
+        $username=mysqli_real_escape_string($conn,htmlspecialchars($_POST['newUsername']));
+        $password=hash("sha256",mysqli_real_escape_string($conn,htmlspecialchars($_POST['newPassword'])));
         $olduser=mysqli_real_escape_string($conn,$_COOKIE['user']);
         $sql="UPDATE adminrecords SET user='$username',pass='$password' WHERE user='$olduser'";
         if(mysqli_query($conn,$sql)){
             $err="Credentials Updated";
+
+            // --------------------------------Changing value of Cookie ------------------------- //
+            setcookie("user", "", time() - 36000000,'/');
+            setcookie("pass", "", time() - 36000000,'/');
+            setcookie("user", htmlspecialchars($_POST['newUsername']), time() + 1800,'/');
+            setcookie("pass", hash("sha256",htmlspecialchars($_POST['newPassword'])), time() + 1800,'/');
         } else {
             $err="Query Error ".mysqli_error($conn);
         }
       }
+
+      // --------------------------------Authentication---------------------------- //
+
       if(isset($_COOKIE['user']) && isset($_COOKIE['pass'])){
         $user=$_COOKIE['user'];
         $pass=$_COOKIE['pass'];
@@ -67,6 +85,9 @@
 </head>
 
 <body>
+
+  <!-------------------------------Navbar------------------------------------>
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="./index.php">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
@@ -87,44 +108,58 @@
       </ul>
     </div>
   </nav>
+
+  <!-------------------------------Alerts & Warnings------------------------------------>
+
   <?php if($err!=''){ ?>
-        <div class="alert alert-<?php echo $err=="Credentials Updated"?"success":"danger"; ?> alert-dismissible fade show" role="alert">
-            <?php echo $err; ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <div class="alert alert-<?php echo $err=="Credentials Updated"?"success":"danger"; ?> alert-dismissible fade show"
+    role="alert">
+    <?php echo $err; ?>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <?php } ?>
+
+
+  <!-----------------------------Credentials Updating Form---------------------------------->
+
+  <div style="color:black;" class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
+    tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Change Credentials</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-            </button>
+          </button>
         </div>
-    <?php } ?>
-  <!-- -----------------Modal-------------------------- -->
-    <div style="color:black;" class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Change Credentials</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
-                <input type="text" class="form-control mb-3" name="newUsername" placeholder="New Username" required autocomplete="off">
-                <input type="password" class="form-control mb-3" name="newPassword" placeholder="New Password" required autocomplete="off">
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" name="save">Save</button>
-            </form>
-          </div>
+        <div class="modal-body">
+          <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
+            <input type="text" class="form-control mb-3" name="newUsername" placeholder="New Username" required
+              autocomplete="off">
+            <input type="password" class="form-control mb-3" name="newPassword" placeholder="New Password" required
+              autocomplete="off">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" name="save">Save</button>
+          </form>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-------------------------------All Submitted Applications------------------------------------>
+
   <div class="resume-form">
     <h1 style="display:inline-block;width:80%;">Resumes</h1>
     <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" style="display:inline;">
       <input type="submit" value="LogOut" name="submit" class="btn btn-primary"
         style="font-family: 'Aladin', cursive;font-size:20px">
     </form>
-    <button style="font-family: 'Aladin', cursive;font-size:20px" class="btn btn-primary" id="changePassword">Change Password</button>
+    <button style="font-family: 'Aladin', cursive;font-size:20px" class="btn btn-primary" id="changePassword">Change
+      Password</button>
     <div class="row">
       <?php foreach($results as $intern){ ?>
       <div class="col-4">
@@ -141,7 +176,7 @@
     </div>
   </div>
   <script>
-    document.getElementById("changePassword").onclick=function(){
+    document.getElementById("changePassword").onclick = function () {
       $('#staticBackdrop').modal(true);
     }
   </script>

@@ -1,10 +1,16 @@
 <?php 
   $err='';
+
+  // -----------------------Connecting to MYSQL----------------------------- //
+
   $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
   if(!$conn){
       echo 'Connection Error : '. mysqli_connect_error();
   } 
   else{
+
+    // ------------------------Authentication------------------------------ //
+
     if(isset($_POST['submit'])){
       $sql="SELECT user,pass FROM adminrecords";
       if(mysqli_query($conn,$sql)){
@@ -42,7 +48,13 @@
 </head>
 
 <body>
+
+  <!--------------------------Nav Bar-------------------------------->
+
   <?php include "./navbar.php"; ?>
+
+  <!------------------------Alert & Warnings------------------------->
+
   <?php if($err!=''){ ?>
   <div class="alert alert-danger alert-dismissible fade show" role="alert">
     <?php echo $err; ?>
@@ -51,6 +63,9 @@
     </button>
   </div>
   <?php } ?>
+
+  <!--------------------------Login Form-------------------------------->
+
   <div class="resume-form">
     <h1>Admin Panel</h1>
     <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>" style="font-family: 'Mali', cursive;">

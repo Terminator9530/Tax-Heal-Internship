@@ -1,9 +1,11 @@
 <?php
     $err="";
+
+    //---------------------------Submitting Application Form------------------------------ //
+
     if(isset($_POST["submit"])){
         $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
         if(!$conn){
-            echo 'Connection Error : '. mysqli_connect_error();
             $err=mysqli_connect_error();
         } else {
             $info1=mysqli_real_escape_string($conn,$_POST['info1']);
@@ -15,9 +17,8 @@
             $sql="INSERT INTO resume(info1,info2,info3,info4,info5,info6) VALUES('$info1','$info2','$info3','$info4','$info5','$info6')";
             if(mysqli_query($conn,$sql)){
                 $err="Form Submitted";
-                // header('Location:./index.php');
             } else {
-                echo "Query Error ".mysqli_error($conn);
+                $err="Query Error ".mysqli_error($conn);
             }
             mysqli_close($conn);
         }
@@ -42,15 +43,25 @@
 </head>
 
 <body>
+
+    <!--------------------------Nav Bar-------------------------------->
+
     <?php include "./navbar.php"; ?>
+
+    <!-----------------------Alerts & Warnings--------------------------->
+
     <?php if($err!=''){ ?>
-        <div class="alert alert-<?php echo $err=="Form Submitted"?"success":"danger"; ?> alert-dismissible fade show" role="alert">
-            <?php echo $err; ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <div class="alert alert-<?php echo $err=="Form Submitted"?"success":"danger"; ?> alert-dismissible fade show"
+        role="alert">
+        <?php echo $err; ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+        </button>
+    </div>
     <?php } ?>
+
+    <!------------------------Application Form----------------------------->
+
     <div class="resume-form">
         <h3>Enter The Resume Details : </h3>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="row"

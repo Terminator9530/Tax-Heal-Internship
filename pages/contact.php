@@ -15,7 +15,13 @@
 </head>
 
 <body>
+
+    <!--------------------------Nav Bar-------------------------------->
+
     <?php include "./navbar.php"; ?>
+
+    <!---------------------Map & Contact Address------------------------>
+
     <div class="address">
         <center>
             <h1>Contact</h1>
