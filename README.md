@@ -2,6 +2,6 @@
 
 <p>For Demo Click Link : https://terminator9530.000webhostapp.com/pages</p>
 
-<p>For Admin Login : </p>
-Username : Admin
+<h3><b>Credentials for Admin</b></h3>
+Username : Admin<br>
 Password : Test
