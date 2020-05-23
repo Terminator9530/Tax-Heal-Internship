@@ -43,7 +43,7 @@
       <div class="resume-form">
       <h1>Resume</h1>
         <?php for($i=0;$i<6;$i++){ ?>
-            <p><?php echo $results["info".($i+1)]; ?></p>
+            <p><?php echo "info".($i+1)." : ".$results["info".($i+1)]; ?></p>
         <?php } ?>
       </div>
     <!-- Optional JavaScript -->

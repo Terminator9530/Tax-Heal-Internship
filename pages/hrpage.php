@@ -7,7 +7,7 @@
     if(isset($_POST['save'])){
         $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
         if(!$conn){
-            echo 'Connection Error : '. mysqli_connect_error();
+            $err='Connection Error : '. mysqli_connect_error();
         } else {
             $username=mysqli_real_escape_string($conn,$_POST['newUsername']);
             $password=hash("sha256",mysqli_real_escape_string($conn,$_POST['newPassword']));
@@ -15,9 +15,8 @@
             $sql="UPDATE adminrecords SET user='$username',pass='$password' WHERE user='$olduser'";
             if(mysqli_query($conn,$sql)){
                 $err="Credentials Updated";
-                echo $err;
             } else {
-                echo "Query Error ".mysqli_error($conn);
+                $err="Query Error ".mysqli_error($conn);
             }
             mysqli_close($conn);
         }
@@ -79,6 +78,14 @@
       </ul>
     </div>
   </nav>
+  <?php if($err!=''){ ?>
+        <div class="alert alert-<?php echo $err=="Credentials Updated"?"success":"danger"; ?> alert-dismissible fade show" role="alert">
+            <?php echo $err; ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <?php } ?>
   <!-- -----------------Modal-------------------------- -->
     <div style="color:black;" class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
@@ -103,8 +110,8 @@
       </div>
     </div>
   <div class="resume-form">
-    <h1>Resumes</h1>
-    <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
+    <h1 style="display:inline-block;width:80%;">Resumes</h1>
+    <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" style="display:inline;">
       <input type="submit" value="LogOut" name="submit" class="btn btn-primary"
         style="font-family: 'Aladin', cursive;font-size:20px">
     </form>
