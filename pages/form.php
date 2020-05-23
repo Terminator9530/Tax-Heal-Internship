@@ -1,13 +1,10 @@
 <?php
+    $err="";
     if(isset($_POST["submit"])){
-        echo "Done";
-        for($i=0;$i<6;$i++){
-            echo $_POST['info'.($i+1)];
-        }
-
         $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
         if(!$conn){
             echo 'Connection Error : '. mysqli_connect_error();
+            $err=mysqli_connect_error();
         } else {
             $info1=mysqli_real_escape_string($conn,$_POST['info1']);
             $info2=mysqli_real_escape_string($conn,$_POST['info2']);
@@ -17,7 +14,8 @@
             $info6=mysqli_real_escape_string($conn,$_POST['info6']);
             $sql="INSERT INTO resume(info1,info2,info3,info4,info5,info6) VALUES('$info1','$info2','$info3','$info4','$info5','$info6')";
             if(mysqli_query($conn,$sql)){
-                 header('Location:./index.php');
+                $err="Form Submitted";
+                // header('Location:./index.php');
             } else {
                 echo "Query Error ".mysqli_error($conn);
             }
@@ -45,6 +43,14 @@
 
 <body>
     <?php include "./navbar.php"; ?>
+    <?php if($err!=''){ ?>
+        <div class="alert alert-<?php echo $err=="Form Submitted"?"success":"danger"; ?> alert-dismissible fade show" role="alert">
+            <?php echo $err; ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <?php } ?>
     <div class="resume-form">
         <h3>Enter The Resume Details : </h3>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="row"
