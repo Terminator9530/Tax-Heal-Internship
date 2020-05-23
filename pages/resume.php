@@ -3,7 +3,7 @@
     $err='';
     $intern='';
     $status='';
-    echo json_encode($_GET);
+    // echo json_encode($_GET);
     // ------------------------------Connecting to MySQL database------------------------------ //
 
     $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
@@ -25,6 +25,7 @@
                     // ------------------------------Fetching id from GET superglobals------------------------------ //
 
                     if(isset($_GET['id'])){
+                        // echo $_GET['id'];
 
                         // ------------------------------Find record for that id------------------------------ //
 
