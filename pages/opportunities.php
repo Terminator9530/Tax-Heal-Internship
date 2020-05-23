@@ -17,6 +17,7 @@
 </head>
 
 <body>
+    <?php include "./navbar.php"; ?>
     <div class="resume-form">
         <h1>Depiction Opportunities</h1>
     </div>

@@ -1,14 +1,3 @@
-<?php 
-      if(isset($_POST['admin'])){
-        header("Location:./admin.php");
-      }
-      if(isset($_POST['user'])){
-        header("Location:./form.php");
-      }
-      if(isset($_POST['contact'])){
-        header("Location:./contact.php");
-      }
-?>
 <!doctype html>
 <html lang="en">
 
@@ -25,19 +14,35 @@
 
   <title>Admin Panel</title>
   <link rel="stylesheet" type="text/css" href="../styles/index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
   <?php include "./navbar.php"; ?>
-  <div class="resume-form">
+  <div class="home-page">
     <h1>Landing Page</h1>
-    <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
-      <input type="submit" name="admin" value="Admin Login" class="btn btn-primary"
-        style="font-family: 'Mali', cursive;">
-      <input type="submit" name="user" value="Application Form" class="btn btn-primary"
-        style="font-family: 'Mali', cursive;">
-      <input type="submit" name="contact" value="Contact" class="btn btn-primary" style="font-family: 'Mali', cursive;"">
-    </form>
+    <div class="row" style="margin:auto;">
+    <div class="card text-white bg-dark mb-3 col-12 col-md-6 col-xl-4 mr-1 ml-1" style="max-width: 18rem;">
+      <div class="card-header">Admin Login</div>
+      <div class="card-body">
+        <p class="card-text">Login system only for admins.</p>
+        <a href="./admin.php" class="btn btn-primary">Login</a>
+      </div>
+    </div>
+    <div class="card text-white bg-dark mb-3 col-12 col-md-6 col-xl-4 mr-1 ml-1" style="max-width: 18rem;">
+      <div class="card-header">Application Form</div>
+      <div class="card-body">
+        <p class="card-text">For Applicants who want to apply for Internship.</p>
+        <a href="./form.php" class="btn btn-primary">Application Form</a>
+      </div>
+    </div>
+    <div class="card text-white bg-dark mb-3 col-12 col-md-6 col-xl-4 mr-1 ml-1" style="max-width: 18rem;">
+      <div class="card-header">Contact</div>
+      <div class="card-body">
+        <p class="card-text">In case of any problems contact us.</p>
+        <a href="./contact.php" class="btn btn-primary">Contact</a>
+      </div>
+    </div>
   </div>
 
     <!-- Optional JavaScript -->

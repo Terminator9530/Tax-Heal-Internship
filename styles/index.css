@@ -9,15 +9,16 @@ body {
     padding: 0;
   }
 
-  .resume-form {
+  .home-page {
     padding: 10px;
-    width: 50%;
+    width: 60%;
     margin: auto;
   }
 
-  .resume-form input[type='submit'] {
+  .home-page input[type='submit'] {
     margin: 15px;
     margin-left: 0;
+    font-family: 'Mali', cursive;
   }
 
   form {
@@ -26,4 +27,8 @@ body {
 
   h1 {
     font-family: 'Girassol', cursive;
+  }
+
+  .col-12, .col-md-6, .col-xl-4{
+    padding:0!important;
   }
