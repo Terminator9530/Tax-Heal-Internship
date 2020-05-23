@@ -10,7 +10,6 @@
             $sql="SELECT user,pass FROM adminrecords WHERE user='$user' AND pass='$pass'";
             if(mysqli_query($conn,$sql)){
                 $results = $conn->query($sql)->fetch_assoc();
-                print_r($results);
                 if($user==$results['user'] && $pass==$results['pass']){
                     if(isset($_GET['id'])){
                         $id=mysqli_real_escape_string($conn,$_GET['id']);

@@ -1,29 +1,27 @@
 <?php 
-      $err='';
-      if(isset($_COOKIE['user'])){
-        header("Location:./hrpage.php");
+  $err='';
+  $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
+  if(!$conn){
+      echo 'Connection Error : '. mysqli_connect_error();
+  } 
+  else{
+    if(isset($_POST['submit'])){
+      $sql="SELECT user,pass FROM adminrecords";
+      if(mysqli_query($conn,$sql)){
+          $results = $conn->query($sql)->fetch_assoc();
+      } else {
+          echo "Query Error ".mysqli_error($conn);
       }
-      if(isset($_POST['submit'])){
-        $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
-        if(!$conn){
-            echo 'Connection Error : '. mysqli_connect_error();
-        } else {
-            $sql="SELECT user,pass FROM adminrecords";
-            if(mysqli_query($conn,$sql)){
-                $results = $conn->query($sql)->fetch_assoc();
-            } else {
-                echo "Query Error ".mysqli_error($conn);
-            }
-            mysqli_close($conn);
-        }
-        if($_POST['username']==$results['user'] && hash("sha256",$_POST['password'])==$results['pass']){
-          setcookie('user',$results['user'],time()+1800,'/');
-          setcookie('pass',$results['pass'],time()+1800,'/');
-          header('Location:./hrpage.php');
-        }
-        else
-        $err="Wrong Credentials";
+      if($_POST['username']==$results['user'] && hash("sha256",$_POST['password'])==$results['pass']){
+        setcookie('user',$results['user'],time()+1800,'/');
+        setcookie('pass',$results['pass'],time()+1800,'/');
+        header('Location:./hrpage.php');
       }
+      else
+      $err="Wrong Credentials";
+    }
+  }
+  mysqli_close($conn);
 ?>
 <!doctype html>
 <html lang="en">
