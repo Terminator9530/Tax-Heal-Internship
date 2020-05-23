@@ -55,7 +55,7 @@
               }
             } 
             else {
-                // header("Location:./admin.php");
+                header("Location:./admin.php");
               }
         }
         else {

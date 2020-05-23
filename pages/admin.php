@@ -9,6 +9,21 @@
   } 
   else{
 
+    if(isset($_COOKIE['user']) && isset($_COOKIE['pass'])){
+      $user=$_COOKIE['user'];
+      $pass=$_COOKIE['pass'];
+      $sql="SELECT user,pass FROM adminrecords WHERE user='$user' AND pass='$pass'";
+      if(mysqli_query($conn,$sql)){
+          $results = $conn->query($sql)->fetch_assoc();
+          if($user==$results['user'] && $pass==$results['pass']){
+            header("Location:./hrpage.php");
+          }
+      }
+      else {
+        echo "Query Error ".mysqli_error($conn);
+      }
+      }
+
     // ------------------------Authentication------------------------------ //
 
     if(isset($_POST['submit'])){
