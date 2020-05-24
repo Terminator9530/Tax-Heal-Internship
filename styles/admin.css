@@ -15,7 +15,7 @@ body {
     margin: auto;
   }
 
-  .resume-form input[type='submit'] {
+ #login{
     margin: 15px;
     margin-left: 0;
   }

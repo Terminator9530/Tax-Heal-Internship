@@ -27,6 +27,7 @@ body {
 
   h1 {
     font-family: 'Girassol', cursive;
+    margin-bottom: 30px;
   }
 
   .col-12, .col-md-6, .col-xl-4{

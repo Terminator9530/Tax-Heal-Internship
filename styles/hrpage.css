@@ -1,5 +1,6 @@
-input[type='submit'] {
-    margin: 20px;
+#logout,#changePassword {
+  margin: 15px;
+  margin-left: 0;
   }
 
   .intern {
@@ -29,11 +30,6 @@ input[type='submit'] {
     padding: 10px;
     width: 90%;
     margin: auto;
-  }
-
-  .resume-form input[type='submit'] {
-    margin: 15px;
-    margin-left: 0;
   }
 
   form {
