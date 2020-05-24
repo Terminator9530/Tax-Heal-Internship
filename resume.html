@@ -59,11 +59,17 @@
             var id=getUrlVars()['id'];
             $.get(`./pages/resume.php?id=${id}`, function (data, status) {
                 console.log(JSON.parse(data));
-                // if (JSON.parse(data)['status'] != "")
-                // window.location.replace("./admin.html");
-                // else {
-                // console.log(JSON.parse(data)['intern']);
-                // }
+                if (JSON.parse(data)['status'] != "")
+                window.location.replace("./admin.html");
+                else {
+                var intern=JSON.parse(data)['intern'];
+                document.getElementById("intern").innerHTML+=`info1 : ${intern['info1']}<br>`;
+                document.getElementById("intern").innerHTML+=`info2 : ${intern['info2']}<br>`;
+                document.getElementById("intern").innerHTML+=`info3 : ${intern['info3']}<br>`;
+                document.getElementById("intern").innerHTML+=`info4 : ${intern['info4']}<br>`;
+                document.getElementById("intern").innerHTML+=`info5 : ${intern['info5']}<br>`;
+                document.getElementById("intern").innerHTML+=`info6 : ${intern['info6']}`;
+                }
             });
         });
     </script>

@@ -1,7 +1,7 @@
 <?php 
 
     $err='';
-    $intern='';
+    $results='';
     $status='';
     // echo json_encode($_GET);
     // ------------------------------Connecting to MySQL database------------------------------ //
@@ -21,6 +21,7 @@
             if(mysqli_query($conn,$sql)){
                 $results = $conn->query($sql)->fetch_assoc();
                 if($user==$results['user'] && $pass==$results['pass']){
+                    // echo json_encode($results);
 
                     // ------------------------------Fetching id from GET superglobals------------------------------ //
 
@@ -33,6 +34,7 @@
                         $sql="SELECT info1,info2,info3,info4,info5,info6,id FROM resume WHERE id=$id";
                         if(mysqli_query($conn,$sql)){
                             $results = $conn->query($sql)->fetch_assoc();
+                            // echo json_encode($results);
                         } else {
                             $err="Query Error ".mysqli_error($conn);
                         }
@@ -51,5 +53,5 @@
     }
     mysqli_close($conn);
 
-    // echo json_encode(array('err'=>$err,'status'=>$status,'intern'=>$intern));
+    echo json_encode(array('err'=>$err,'status'=>$status,'intern'=>$results));
 ?>
