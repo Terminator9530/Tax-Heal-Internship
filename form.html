@@ -55,28 +55,22 @@
     <h3>Enter The Resume Details : </h3>
     <form class="row" style="font-family: 'Mali', cursive;">
       <div class="col-6">
-        <label>info1</label><input type="text" class="form-control"
-          id="info1" required autocomplete="off">
+        <label>info1</label><input type="text" class="form-control" id="info1" required autocomplete="off">
       </div>
       <div class="col-6">
-        <label>info2</label><input type="text" class="form-control"
-          id="info2" required autocomplete="off">
+        <label>info2</label><input type="text" class="form-control" id="info2" required autocomplete="off">
       </div>
       <div class="col-6">
-        <label>info3</label><input type="text" class="form-control"
-          id="info3" required autocomplete="off">
+        <label>info3</label><input type="text" class="form-control" id="info3" required autocomplete="off">
       </div>
       <div class="col-6">
-        <label>info4</label><input type="text" class="form-control"
-          id="info4" required autocomplete="off">
+        <label>info4</label><input type="text" class="form-control" id="info4" required autocomplete="off">
       </div>
       <div class="col-6">
-        <label>info5</label><input type="text" class="form-control"
-          id="info5" required autocomplete="off">
+        <label>info5</label><input type="text" class="form-control" id="info5" required autocomplete="off">
       </div>
       <div class="col-6">
-        <label>info6</label><input type="text" class="form-control"
-          id="info6" required autocomplete="off">
+        <label>info6</label><input type="text" class="form-control" id="info6" required autocomplete="off">
       </div>
       <button type="button" class="btn btn-primary" id="submit"
         style="font-family: 'Aladin', cursive;font-size:20px">Submit</button>
@@ -93,34 +87,6 @@
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
   </script>
   <script src="./js/form.js"></script>
-  <script>
-    $(document).ready(function () {
-      $("#submit").click(function () {
-        var info1=document.getElementById("info1").value;
-        var info2=document.getElementById("info2").value;
-        var info3=document.getElementById("info3").value;
-        var info4=document.getElementById("info4").value;
-        var info5=document.getElementById("info5").value;
-        var info6=document.getElementById("info6").value;
-        var submit=document.getElementById("submit").value;
-        var info={info1:info1,info2:info2,info3:info3,info4:info4,info5:info5,info6:info6,submit:submit};
-        $.post('./pages/form.php',info, function (data, status) {
-          console.log(JSON.parse(data));
-          const err = JSON.parse(data)["err"];
-          const stat = JSON.parse(data)["status"];
-          console.log(err, stat);
-          if (err != "") {
-            document.getElementById("err").innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">
-              ${err}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>`;
-          }
-        });
-      });
-    });
-  </script>
 </body>
 
 </html>

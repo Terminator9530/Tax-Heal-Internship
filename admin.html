@@ -72,50 +72,6 @@
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
   </script>
   <script src="./js/admin.js"></script>
-  <script>
-    $(document).ready(function () {
-      $.get('./pages/admin.php', function (data, status) {
-        console.log(JSON.parse(data));
-        const err = JSON.parse(data)["err"];
-        const stat = JSON.parse(data)["status"];
-        console.log(err, stat);
-        if (err != "") {
-          document.getElementById("err").innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
-              ${err}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>`;
-        }
-        if (stat != "") {
-          window.location.replace("./hrpage.html");
-        }
-      });
-      $("#login").click(function () {
-        $.post('./pages/admin.php', {
-          username: document.getElementById("username").value,
-          password: document.getElementById("password").value,
-          submit: document.getElementById("login").value
-        }, function (data, status) {
-          console.log(JSON.parse(data));
-          const err = JSON.parse(data)["err"];
-          const stat = JSON.parse(data)["status"];
-          console.log(err, stat);
-          if (err != "") {
-            document.getElementById("err").innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
-              ${err}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>`;
-          }
-          if (stat != "") {
-            window.location.replace("./hrpage.html");
-          }
-        });
-      });
-    });
-  </script>
 </body>
 
 </html>
