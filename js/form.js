@@ -6,8 +6,6 @@ $(document).ready(function () {
     $("#submit").click(function (e) {
         e.preventDefault();
         var $myForm = $("#myForm");
-        console.log($myForm[0].checkValidity());
-        console.log($myForm[0].reportValidity());
         if($myForm[0].checkValidity()&&$myForm[0].reportValidity()){
             var name=document.getElementById("name").value;
             var email=document.getElementById("email").value;
@@ -41,11 +39,10 @@ $(document).ready(function () {
                 github:github,
                 submit: submit
             };
-            console.log(info);
             $.post('./pages/form.php', info, function (data, status) {
                 const err = JSON.parse(data)["err"];
                 if (err != "") {
-                    document.getElementById("err").innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">
+                    document.getElementById("err").innerHTML = `<div class="alert alert-${err=="Form Submitted"?"success":"danger"} alert-dismissible fade show" role="alert">
                 ${err}
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

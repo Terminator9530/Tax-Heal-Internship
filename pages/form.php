@@ -23,10 +23,23 @@
             $skills=mysqli_real_escape_string($conn,$_POST["skills"]);
             $github=mysqli_real_escape_string($conn,$_POST["github"]);
             $submit=mysqli_real_escape_string($conn,$_POST["submit"]);
-            $sql="INSERT INTO resume(intern_name,email,phone_no,city,graduation_per,graduation_ins,senior_per,senior_ins,senior_board,secondary_per,secondary_ins,secondary_board,skills,github) VALUES('$name','$email',$phone_no,'$city',$grad_per,'$grad_ins',$senior_per,'$senior_ins','$senior_board',$secon_per,'$secon_ins','$secon_board','$skills','$github')";
+            $sql="SELECT * FROM resume WHERE email='$email'";
             if(mysqli_query($conn,$sql)){
-                $err="Form Submitted";
-            } else {
+                $result=$conn->query($sql)->fetch_assoc();
+                $data=$result;
+                if(!$data){
+                    $sql="INSERT INTO resume(intern_name,email,phone_no,city,graduation_per,graduation_ins,senior_per,senior_ins,senior_board,secondary_per,secondary_ins,secondary_board,skills,github) VALUES('$name','$email',$phone_no,'$city',$grad_per,'$grad_ins',$senior_per,'$senior_ins','$senior_board',$secon_per,'$secon_ins','$secon_board','$skills','$github')";
+                    if(mysqli_query($conn,$sql)){
+                        $err="Form Submitted";
+                    } else {
+                        $err="Query Error ".mysqli_error($conn);
+                    }
+                }
+                else{
+                    $err="Already Submitted";
+                }
+            }
+            else{
                 $err="Query Error ".mysqli_error($conn);
             }
             mysqli_close($conn);

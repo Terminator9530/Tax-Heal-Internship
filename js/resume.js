@@ -15,7 +15,6 @@ $(document).ready(function () {
     
     var id = getUrlVars()['id'];
     $.get(`./pages/resume.php?id=${id}`, function (data, status) {
-        console.log(JSON.parse(data));
         if (JSON.parse(data)['status'] != "")
             window.location.replace("./admin.html");
         else {
