@@ -50,7 +50,6 @@
   </div>
 
   <!------------------------Application Form----------------------------->
-
   <div class="resume-form">
     <h3>Enter The Resume Details : </h3>
     <form id="myForm" class="row" style="font-family: 'Mali', cursive;" action="/">
@@ -61,19 +60,19 @@
         <label>Email</label><input type="email" class="form-control" id="email" required autocomplete="off">
       </div>
       <div class="col-6">
-        <label>Phone No</label><input type="number" class="form-control" id="phone_no" required autocomplete="off">
+        <label>Phone No</label><input type="text" class="form-control" id="phone_no" pattern="[0-9]{10,12}" title="Must be a number of length 10-12" required autocomplete="off">
       </div>
       <div class="col-6">
         <label>City</label><input type="text" class="form-control" id="city" required autocomplete="off">
       </div>
       <div class="col-6">
-        <label>Graduation Percentage</label><input type="number" class="form-control" id="grad_per" required autocomplete="off">
+        <label>Graduation Percentage</label><input type="text" class="form-control" id="grad_per" pattern="[0-9]{1,3}" title="Must be a valid percentage value" required autocomplete="off">
       </div>
       <div class="col-6">
         <label>Graduation Institution Name</label><input type="text" class="form-control" id="grad_ins" required autocomplete="off">
       </div>
       <div class="col-6">
-        <label>Senior Secondary Percentage</label><input type="number" class="form-control" id="senior_per" required autocomplete="off">
+        <label>Senior Secondary Percentage</label><input type="number" class="form-control" id="senior_per"  pattern="[0-9]{1,3}" title="Must be a valid percentage value" required autocomplete="off">
       </div>
       <div class="col-6">
         <label>Senior Secondary Institution Name</label><input type="text" class="form-control" id="senior_ins" required autocomplete="off">
@@ -82,7 +81,7 @@
         <label>Senior Secondary Board</label><input type="text" class="form-control" id="senior_board" required autocomplete="off">
       </div>
       <div class="col-6">
-        <label>Secondary Percentage</label><input type="number" class="form-control" id="secon_per" required autocomplete="off">
+        <label>Secondary Percentage</label><input type="number" class="form-control" id="secon_per" pattern="[0-9]{1,3}" title="Must be a valid percentage value" required autocomplete="off">
       </div>
       <div class="col-6">
         <label>Secondary Institution Name</label><input type="text" class="form-control" id="secon_ins" required autocomplete="off">
@@ -96,8 +95,8 @@
       <div class="col-6">
         <label>Github Link</label><input type="text" class="form-control" id="github" required autocomplete="off">
       </div>
-      <button type="submit" class="btn btn-primary" value="Submit" id="submit"
-        style="font-family: 'Aladin', cursive;font-size:20px">Submit</button>
+      <input type="submit" class="btn btn-primary" value="Submit" id="submit"
+        style="font-family: 'Aladin', cursive;font-size:20px">
     </form>
   </div>
 
