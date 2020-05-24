@@ -10,7 +10,7 @@
     margin: auto;
 }
 
-.resume-form input[type='submit'] {
+#submit{
     margin: 15px;
 }
 
