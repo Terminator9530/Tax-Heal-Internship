@@ -1,21 +1,29 @@
 <?php
     $err="";
-
-
-    //---------------------------Submitting Application Form------------------------------ //
+    // echo json_encode($_POST);
+    // ---------------------------Submitting Application Form------------------------------ //
 
     if(isset($_POST["submit"])){
         $conn=mysqli_connect('localhost','Terminator','Vaibhav@0306',"resume-details");
         if(!$conn){
             $err=mysqli_connect_error();
         } else {
-            $info1=mysqli_real_escape_string($conn,$_POST['info1']);
-            $info2=mysqli_real_escape_string($conn,$_POST['info2']);
-            $info3=mysqli_real_escape_string($conn,$_POST['info3']);
-            $info4=mysqli_real_escape_string($conn,$_POST['info4']);
-            $info5=mysqli_real_escape_string($conn,$_POST['info5']);
-            $info6=mysqli_real_escape_string($conn,$_POST['info6']);
-            $sql="INSERT INTO resume(info1,info2,info3,info4,info5,info6) VALUES('$info1','$info2','$info3','$info4','$info5','$info6')";
+            $name=mysqli_real_escape_string($conn,$_POST["name"]);
+            $email=mysqli_real_escape_string($conn,$_POST["email"]);
+            $phone_no=mysqli_real_escape_string($conn,$_POST["phone_no"]);
+            $city=mysqli_real_escape_string($conn,$_POST["city"]);
+            $grad_per=mysqli_real_escape_string($conn,$_POST["grad_per"]);
+            $grad_ins=mysqli_real_escape_string($conn,$_POST["grad_ins"]);
+            $senior_per=mysqli_real_escape_string($conn,$_POST["senior_per"]);
+            $senior_ins=mysqli_real_escape_string($conn,$_POST["senior_ins"]);
+            $senior_board=mysqli_real_escape_string($conn,$_POST["senior_board"]);
+            $secon_per=mysqli_real_escape_string($conn,$_POST["secon_per"]);
+            $secon_ins=mysqli_real_escape_string($conn,$_POST["secon_ins"]);
+            $secon_board=mysqli_real_escape_string($conn,$_POST["secon_board"]);
+            $skills=mysqli_real_escape_string($conn,$_POST["skills"]);
+            $github=mysqli_real_escape_string($conn,$_POST["github"]);
+            $submit=mysqli_real_escape_string($conn,$_POST["submit"]);
+            $sql="INSERT INTO resume(intern_name,email,phone_no,city,graduation_per,graduation_ins,senior_per,senior_ins,senior_board,secondary_per,secondary_ins,secondary_board,skills,github) VALUES('$name','$email',$phone_no,'$city',$grad_per,'$grad_ins',$senior_per,'$senior_ins','$senior_board',$secon_per,'$secon_ins','$secon_board','$skills','$github')";
             if(mysqli_query($conn,$sql)){
                 $err="Form Submitted";
             } else {
