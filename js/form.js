@@ -6,6 +6,8 @@ $(document).ready(function () {
     $("#submit").click(function (e) {
         e.preventDefault();
         var $myForm = $("#myForm");
+        $myForm[0].checkValidity();
+        $myForm[0].reportValidity();
         if($myForm[0].checkValidity()&&$myForm[0].reportValidity()){
             var name=document.getElementById("name").value;
             var email=document.getElementById("email").value;
