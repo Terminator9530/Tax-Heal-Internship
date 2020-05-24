@@ -31,7 +31,7 @@
                         // ------------------------------Find record for that id------------------------------ //
 
                         $id=mysqli_real_escape_string($conn,$_GET['id']);
-                        $sql="SELECT info1,info2,info3,info4,info5,info6,id FROM resume WHERE id=$id";
+                        $sql="SELECT intern_name,email,phone_no,city,graduation_per,graduation_ins,senior_per,senior_ins,senior_board,secondary_per,secondary_ins,secondary_board,skills,github,id FROM resume WHERE id=$id";
                         if(mysqli_query($conn,$sql)){
                             $results = $conn->query($sql)->fetch_assoc();
                             // echo json_encode($results);

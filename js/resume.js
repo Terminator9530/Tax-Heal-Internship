@@ -19,12 +19,21 @@ $(document).ready(function () {
             window.location.replace("./admin.html");
         else {
             var intern = JSON.parse(data)['intern'];
-            document.getElementById("intern").innerHTML += `info1 : ${intern['info1']}<br>`;
-            document.getElementById("intern").innerHTML += `info2 : ${intern['info2']}<br>`;
-            document.getElementById("intern").innerHTML += `info3 : ${intern['info3']}<br>`;
-            document.getElementById("intern").innerHTML += `info4 : ${intern['info4']}<br>`;
-            document.getElementById("intern").innerHTML += `info5 : ${intern['info5']}<br>`;
-            document.getElementById("intern").innerHTML += `info6 : ${intern['info6']}`;
+            console.log(intern);
+            document.getElementById("intern").innerHTML += `Name : ${intern['intern_name']}<br>`;
+            document.getElementById("intern").innerHTML += `Email : ${intern['email']}<br>`;
+            document.getElementById("intern").innerHTML += `City : ${intern['city']}<br>`;
+            document.getElementById("intern").innerHTML += `GitHub : ${intern['github']}<br>`;
+            document.getElementById("intern").innerHTML += `Skills : ${intern['skills']}<br>`;
+            document.getElementById("intern").innerHTML += `Phone Number : ${intern['phone_no']}<br>`;
+            document.getElementById("intern").innerHTML += `Graduation Percentage : ${intern['graduation_per']}<br>`;
+            document.getElementById("intern").innerHTML += `Graduation Institution : ${intern['graduation_ins']}<br>`;
+            document.getElementById("intern").innerHTML += `Senior Secondary Percentage : ${intern['senior_per']}<br>`;
+            document.getElementById("intern").innerHTML += `Senior Secondary Institution : ${intern['senior_ins']}<br>`;
+            document.getElementById("intern").innerHTML += `Senior Secondary Board : ${intern['senior_board']}<br>`;
+            document.getElementById("intern").innerHTML += `Secondary Percentage : ${intern['secondary_per']}<br>`;
+            document.getElementById("intern").innerHTML += `Secondary Institution : ${intern['secondary_ins']}<br>`;
+            document.getElementById("intern").innerHTML += `Secondary Board : ${intern['secondary_board']}`;
         }
     });
 });
